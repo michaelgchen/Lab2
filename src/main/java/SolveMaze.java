@@ -50,5 +50,34 @@ public class SolveMaze {
             System.out.println("Try again!");
         }
 
+
+        maze.startAtZero();
+        maze.endAtTopRight();
+        // trying random walk
+        for (int step = 0; step < 1000; step++) {
+            while (!maze.isFinished()) {
+                int random = (int) (Math.random() * 2);
+                if (random == 1) {
+                    maze.turnRight();
+                } else {
+                maze.turnLeft();
+                }
+
+                while (!maze.canMove()) {
+                    if (random == 0) {
+                        maze.turnRight();
+                    } else {
+                        maze.turnLeft();
+                    }
+                }
+                maze.move();
+            }
+        }
+        if (maze.isFinished()) {
+            System.out.println("You solved the maze!");
+        } else {
+            System.out.println("Try again!");
+        }
+
     }
 }
